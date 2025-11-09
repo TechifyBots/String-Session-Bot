@@ -3,12 +3,7 @@ import asyncio
 from collections import defaultdict
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.errors import (
-    FloodWait,
-    UserIsBlocked,
-    PeerIdInvalid,
-    InputUserDeactivated,
-)
+from pyrogram.errors import *
 from config import *
 from Script import text
 from .db import tb
