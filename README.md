@@ -17,6 +17,7 @@
 - Can Add Multiple Force Subscribe Channel
 - Can Broadcast Message To Users
 - Fully modified repo
+- Maintenance Mode
 - Deploy To Koyeb + Heroku + Railway.
 - [Developer support](https://telegram.me/TechifySupport) 24x7.
 </details>
