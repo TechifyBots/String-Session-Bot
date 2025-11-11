@@ -47,6 +47,7 @@ gen - To start generation string session
 stats - To get bot stats
 cancel - To cancel the string generation process
 broadcast - To broadcast your message
+maintenance - Toggle maintenance mode.
 ```
 </b>
 </details>
