@@ -7,7 +7,6 @@ from pyrogram.errors import *
 from config import *
 from Script import text
 from .db import tb
-from .fsub import get_fsub
 
 @Client.on_message(filters.command("start"))
 async def start_cmd(client, message):
@@ -24,7 +23,6 @@ async def start_cmd(client, message):
                 bot.username
             )
         )
-    if IS_FSUB and not await get_fsub(client, message):return
     await message.reply_text(
         text.START.format(message.from_user.mention),
         reply_markup=InlineKeyboardMarkup([
@@ -78,7 +76,6 @@ async def broadcasting_func(client: Client, message: Message):
     failed = 0
     raw_text = to_copy_msg.caption or to_copy_msg.text or ""
     reply_markup, cleaned_text = parse_button_markup(raw_text)
-
     for i, user in enumerate(users_list, start=1):
         user_id = user.get("user_id")
         if not user_id:
@@ -137,7 +134,6 @@ async def broadcasting_func(client: Client, message: Message):
                 failed += 1
             continue
         users_by_id[uid].append(user)
-
     for uid, docs in users_by_id.items():
         if uid in completed_users:
             for duplicate in docs[1:]:
@@ -147,9 +143,7 @@ async def broadcasting_func(client: Client, message: Message):
             for doc in docs:
                 if await tb.delete_user(doc.get("user_id")):
                     failed += 1
-
     active_users = len(completed_users)
-
     await msg.edit(
         f"🎯 <b>Broadcast Completed</b>\n\n"
         f"👥 Total Users (Before): <code>{total_before}</code>\n"
