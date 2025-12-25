@@ -52,6 +52,9 @@ stats - To get bot stats
 cancel - To cancel the string generation process
 broadcast - To broadcast your message
 maintenance - Toggle maintenance mode.
+ban - to ban a user.
+unban - to unban a banned user.
+banlist - to check banned users.
 ```
 </b>
 </details>
