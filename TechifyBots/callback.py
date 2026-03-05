@@ -1,47 +1,51 @@
 import traceback
+import random
 from pyrogram import Client
-from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import CallbackQuery, InlineKeyboardButton, InlineKeyboardMarkup, InputMediaPhoto
 from Script import text
-from config import ADMIN
+from config import ADMIN, PICS
 from .main import generate_session, ask_ques, buttons_ques
 
 @Client.on_callback_query()
 async def callback_query_handler(client, query: CallbackQuery):
-    data = query.data
-
+    data=query.data
     try:
-        if data == "start":
-            await query.message.edit_text(
-                text.START.format(query.from_user.mention),
-                disable_web_page_preview=True,
+        if data=="start":
+            await query.message.edit_media(
+                InputMediaPhoto(
+                    media=random.choice(PICS),
+                    caption=text.START.format(query.from_user.mention)
+                ),
                 reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton('ᴀʙᴏᴜᴛ', callback_data='about'),
-                     InlineKeyboardButton('ʜᴇʟᴘ', callback_data='help')],
-                    [InlineKeyboardButton('ɢᴇɴᴇʀᴀᴛᴇ sᴛʀɪɴɢ sᴇssɪᴏɴ', callback_data='generate')]
+                    [InlineKeyboardButton('ℹ️ 𝖠𝖻𝗈𝗎𝗍',callback_data='about'),
+                     InlineKeyboardButton('📚 𝖧𝖾𝗅𝗉',callback_data='help')],
+                    [InlineKeyboardButton('⚡ 𝖦𝖾𝗇𝖾𝗋𝖺𝗍𝖾 𝖲𝗍𝗋𝗂𝗇𝗀 𝖲𝖾𝗌𝗌𝗂𝗈𝗇',callback_data='generate')]
                 ])
             )
 
-        elif data == "help":
-            await query.message.edit_text(
-                text.HELP.format(query.from_user.mention),
-                disable_web_page_preview=True,
+        elif data=="help":
+            await query.message.edit_media(
+                InputMediaPhoto(
+                    media=random.choice(PICS),
+                    caption=text.HELP.format(query.from_user.mention)
+                ),
                 reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton('ᴜᴩᴅᴀᴛᴇꜱ', url='https://telegram.me/Techifybots'),
-                     InlineKeyboardButton('ꜱᴜᴩᴩᴏʀᴛ', url='https://telegram.me/TechifySupport')],
-                    [InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="start"),
-                     InlineKeyboardButton("ᴄʟᴏꜱᴇ", callback_data="close")]
+                    [InlineKeyboardButton('📢 𝖴𝗉𝖽𝖺𝗍𝖾𝗌',url='https://telegram.me/Techifybots'),
+                     InlineKeyboardButton('🛟 𝖲𝗎𝗉𝗉𝗈𝗋𝗍',url='https://telegram.me/TechifySupport')],
+                    [InlineKeyboardButton("↩️ 𝖡𝖺𝖼𝗄",callback_data="start")]
                 ])
             )
 
-        elif data == "about":
-            await query.message.edit_text(
-                text.ABOUT,
-                disable_web_page_preview=True,
+        elif data=="about":
+            await query.message.edit_media(
+                InputMediaPhoto(
+                    media=random.choice(PICS),
+                    caption=text.ABOUT
+                ),
                 reply_markup=InlineKeyboardMarkup([
-                    [InlineKeyboardButton('💥 ʀᴇᴘᴏ', url='https://github.com/TechifyBots/String-Session-Bot'),
-                     InlineKeyboardButton('👨‍💻 ᴏᴡɴᴇʀ', user_id=int(ADMIN))],
-                    [InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="start"),
-                     InlineKeyboardButton("ᴄʟᴏꜱᴇ", callback_data="close")]
+                    [InlineKeyboardButton('💻 𝖱𝖾𝗉𝗈',url='https://github.com/TechifyBots/String-Session-Bot'),
+                     InlineKeyboardButton('👨‍💻 𝖮𝗐𝗇𝖾𝗋',user_id=int(ADMIN))],
+                    [InlineKeyboardButton("↩️ 𝖡𝖺𝖼𝗄",callback_data="start")]
                 ])
             )
 
