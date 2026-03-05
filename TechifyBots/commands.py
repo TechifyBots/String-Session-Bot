@@ -1,4 +1,5 @@
 import re
+import random
 import asyncio
 from collections import defaultdict
 from pyrogram import Client, filters
@@ -6,9 +7,9 @@ from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import *
 from config import *
 from Script import text
-from .db import tb
+from .database import tb
 
-@Client.on_message(filters.command("start"))
+@Client.on_message(filters.command("start") & filters.private)
 async def start_cmd(client, message):
     if await tb.get_user(message.from_user.id) is None:
         await tb.add_user(message.from_user.id, message.from_user.first_name)
@@ -23,14 +24,14 @@ async def start_cmd(client, message):
                 bot.username
             )
         )
-    await message.reply_text(
-        text.START.format(message.from_user.mention),
+    await message.reply_photo(
+        photo=random.choice(PICS),
+        caption=text.START.format(message.from_user.mention),
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton('ᴀʙᴏᴜᴛ', callback_data='about'),
-             InlineKeyboardButton('ʜᴇʟᴘ', callback_data='help')],
-            [InlineKeyboardButton('ɢᴇɴᴇʀᴀᴛᴇ sᴛʀɪɴɢ sᴇssɪᴏɴ', callback_data='generate')]
-        ]),
-        disable_web_page_preview=True
+            [InlineKeyboardButton('ℹ️ 𝖠𝖻𝗈𝗎𝗍', callback_data='about'),
+             InlineKeyboardButton('📚 𝖧𝖾𝗅𝗉', callback_data='help')],
+            [InlineKeyboardButton('⚡ 𝖦𝖾𝗇𝖾𝗋𝖺𝗍𝖾 𝖲𝗍𝗋𝗂𝗇𝗀 𝖲𝖾𝗌𝗌𝗂𝗈𝗇', callback_data='generate')]
+        ])
     )
 
 def parse_button_markup(text: str):
@@ -76,6 +77,7 @@ async def broadcasting_func(client: Client, message: Message):
     failed = 0
     raw_text = to_copy_msg.caption or to_copy_msg.text or ""
     reply_markup, cleaned_text = parse_button_markup(raw_text)
+
     for i, user in enumerate(users_list, start=1):
         user_id = user.get("user_id")
         if not user_id:
@@ -134,6 +136,7 @@ async def broadcasting_func(client: Client, message: Message):
                 failed += 1
             continue
         users_by_id[uid].append(user)
+
     for uid, docs in users_by_id.items():
         if uid in completed_users:
             for duplicate in docs[1:]:
@@ -143,7 +146,9 @@ async def broadcasting_func(client: Client, message: Message):
             for doc in docs:
                 if await tb.delete_user(doc.get("user_id")):
                     failed += 1
+
     active_users = len(completed_users)
+
     await msg.edit(
         f"🎯 <b>Broadcast Completed</b>\n\n"
         f"👥 Total Users (Before): <code>{total_before}</code>\n"
