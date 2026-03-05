@@ -20,59 +20,68 @@ from telethon.errors import (
     PasswordHashInvalidError
 )
 
-ask_ques = "**» ▷ ᴄʜᴏᴏsᴇ ᴛʜᴇ sᴛʀɪɴɢ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴᴛ ✔️ : :**"
+ACTIVE_USERS = set()
+
+ask_ques = "<blockquote><b>𝖢𝗁𝗈𝗈𝗌𝖾 𝖳𝗁𝖾 𝖲𝗍𝗋𝗂𝗇𝗀 𝖳𝗒𝗉𝖾</b></blockquote>"
+
 buttons_ques = [
     [
-        InlineKeyboardButton("ᴛᴇʟᴇᴛʜᴏɴ", callback_data="telethon"),
-        InlineKeyboardButton("ᴘʏʀᴏɢʀᴀᴍ", callback_data="pyrogram")
+        InlineKeyboardButton("𝖳𝖾𝗅𝖾𝗍𝗁𝗈𝗇", callback_data="telethon"),
+        InlineKeyboardButton("𝖯𝗒𝗋𝗈𝗀𝗋𝖺𝗆", callback_data="pyrogram")
     ], [
-        InlineKeyboardButton("ᴛᴇʟᴇᴛʜᴏɴ ʙᴏᴛ", callback_data="telethon_bot"),
-        InlineKeyboardButton("ᴘʏʀᴏɢʀᴀᴍ ʙᴏᴛ", callback_data="pyrogram_bot")
+        InlineKeyboardButton("𝖳𝖾𝗅𝖾𝗍𝗁𝗈𝗇 𝖡𝗈𝗍", callback_data="telethon_bot"),
+        InlineKeyboardButton("𝖯𝗒𝗋𝗈𝗀𝗋𝖺𝗆 𝖡𝗈𝗍", callback_data="pyrogram_bot")
     ], [
-        InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close")
+        InlineKeyboardButton("✗ 𝖢𝗅𝗈𝗌𝖾 ✗", callback_data="close")
     ]
 ]
 
-gen_button = [[InlineKeyboardButton(text="ɢᴇɴᴇʀᴀᴛᴇ sᴛʀɪɴɢ sᴇssɪᴏɴ", callback_data="generate")]]
+gen_button = [[InlineKeyboardButton(text="🔄 𝖦𝖾𝗇𝖾𝗋𝖺𝗍𝖾 𝖲𝗍𝗋𝗂𝗇𝗀", callback_data="generate")]]
 
-@Client.on_message(filters.private & ~filters.forwarded & filters.command(["gen"]))
+@Client.on_message(filters.private & ~filters.forwarded & filters.command("gen"))
 async def main(_, msg):
-    await msg.reply(ask_ques, reply_markup=InlineKeyboardMarkup(buttons_ques))
+    sent = await msg.reply(ask_ques, reply_markup=InlineKeyboardMarkup(buttons_ques))
 
 async def generate_session(bot: Client, msg: Message, telethon=False, is_bot: bool = False):
+    if msg.from_user.id in ACTIVE_USERS:
+        r = await msg.reply("⚠️ 𝖲𝖾𝗌𝗌𝗂𝗈𝗇 𝖠𝗅𝗋𝖾𝖺𝖽𝗒 𝖱𝗎𝗇𝗇𝗂𝗇𝗀.\n\n𝖳𝗒𝗉𝖾 /cancel 𝗈𝗋 𝖶𝖺𝗂𝗍.")
+        return await auto_delete(msg, r)
+    ACTIVE_USERS.add(msg.from_user.id)
+
     if telethon:
-        ty = "𝗧𝗘𝗟𝗘𝗧𝗛𝗢𝗡"
+        ty = "𝖳𝖾𝗅𝖾𝗍𝗁𝗈𝗇"
     else:
-        ty = "𝗣𝗬𝗥𝗢𝗚𝗥𝗔𝗠"
+        ty = "𝖯𝗒𝗋𝗈𝗀𝗋𝖺𝗆"
     if is_bot:
-        ty += " 𝗕𝗢𝗧"
-    await msg.reply(f"» 𝗧𝗥𝗬𝗜𝗡𝗚 𝗧𝗢 𝗦𝗧𝗔𝗥𝗧 **{ty}** 𝗦𝗘𝗦𝗦𝗜𝗢𝗡 𝗚𝗘𝗡𝗘𝗥𝗔𝗧𝗢𝗥...")
+        ty += " 𝖡𝗈𝗍"
+    start_msg = await msg.reply(f"⏳ 𝖲𝗍𝖺𝗋𝗍𝗂𝗇𝗀 {ty} 𝖲𝖾𝗌𝗌𝗂𝗈𝗇 𝖦𝖾𝗇𝖾𝗋𝖺𝗍𝗈𝗋...")
     user_id = msg.chat.id
-    api_id_msg = await bot.ask(user_id, "sᴇɴᴅ ʏᴏᴜʀ **𝗔𝗣𝗜_𝗜𝗗** ᴛᴏ ᴘʀᴏᴄᴇᴇᴅ.", filters=filters.text)
+    api_id_msg = await bot.ask(user_id, "𝖲𝖾𝗇𝖽 𝗒𝗈𝗎𝗋 <b>API_ID</b>", filters=filters.text)
     if await cancelled(api_id_msg):
         return
     else:
         try:
             api_id = int(api_id_msg.text)
         except ValueError:
-            await api_id_msg.reply("**𝗔𝗣𝗜_𝗜𝗗** ᴍᴜsᴛ ʙᴇ ᴀɴ ɪɴᴛᴇɢᴇʀ, sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", quote=True, reply_markup=InlineKeyboardMarkup(gen_button))
-            return
-        api_hash_msg = await bot.ask(user_id, "» ɴᴏᴡ sᴇɴᴅ ʏᴏᴜʀ **𝗔𝗣𝗜_𝗛𝗔𝗦𝗛**ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ.", filters=filters.text)
+            r = await api_id_msg.reply("❌ API_ID 𝗆𝗎𝗌𝗍 𝖻𝖾 𝖺 𝗇𝗎𝗆𝖻𝖾𝗋.", quote=True, reply_markup=InlineKeyboardMarkup(gen_button))
+            return await auto_delete(api_id_msg, r)
+        api_hash_msg = await bot.ask(user_id, "𝖲𝖾𝗇𝖽 𝗒𝗈𝗎𝗋 <b>API_HASH</b>", filters=filters.text)
         if await cancelled(api_hash_msg):
             return
         api_hash = api_hash_msg.text
     if not is_bot:
-        t = "» sᴇɴᴅ ʏᴏᴜʀ **ᴘʜᴏɴᴇ ɴᴜᴍʙᴇʀ** ᴡɪᴛʜ ᴄᴏᴜɴᴛʀʏ ᴄᴏᴅᴇғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ sᴇssɪᴏɴ \n𝗘𝗫𝗔𝗠𝗣𝗟𝗘 : `+910000000000`'"
+        t = "📱 𝖲𝖾𝗇𝖽 𝗒𝗈𝗎𝗋 <b>Phone Number</b> 𝗐𝗂𝗍𝗁 𝖢𝗈𝗎𝗇𝗍𝗋𝗒 𝖢𝗈𝖽𝖾\nExample: <code>+910000000000</code>"
     else:
-        t = "ᴩʟᴇᴀsᴇ sᴇɴᴅ ʏᴏᴜʀ **ʙᴏᴛ_ᴛᴏᴋᴇɴ** ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ.\nᴇxᴀᴍᴩʟᴇ : `5432198765:abcdanonymousterabaaplol`'"
+        t = "🤖 𝖲𝖾𝗇𝖽 𝗒𝗈𝗎𝗋 <b>Bot Token</b>"
     phone_number_msg = await bot.ask(user_id, t, filters=filters.text)
     if await cancelled(phone_number_msg):
         return
     phone_number = phone_number_msg.text
     if not is_bot:
-        await msg.reply("» ᴛʀʏɪɴɢ ᴛᴏ sᴇɴᴅ ᴏᴛᴩ ᴀᴛ ᴛʜᴇ ɢɪᴠᴇɴ ɴᴜᴍʙᴇʀ...")
+        await msg.reply("📩 𝖲𝖾𝗇𝖽𝗂𝗇𝗀 OTP...")
     else:
-        await msg.reply("» ᴛʀʏɪɴɢ ᴛᴏ ʟᴏɢɪɴ ᴠɪᴀ ʙᴏᴛ ᴛᴏᴋᴇɴ...")
+        await msg.reply("🔐 𝖫𝗈𝗀𝗀𝗂𝗇𝗀 𝗂𝗇 𝗏𝗂𝖺 𝖡𝗈𝗍 𝖳𝗈𝗄𝖾𝗇...")
+
     if telethon and is_bot:
         client = TelegramClient(StringSession(), api_id, api_hash)
     elif telethon:
@@ -90,20 +99,26 @@ async def generate_session(bot: Client, msg: Message, telethon=False, is_bot: bo
             else:
                 code = await client.send_code(phone_number)
     except (ApiIdInvalid, ApiIdInvalidError):
-        await msg.reply("» ʏᴏᴜʀ **ᴀᴩɪ_ɪᴅ** ᴀɴᴅ **ᴀᴩɪ_ʜᴀsʜ** ᴄᴏᴍʙɪɴᴀᴛɪᴏɴ ᴅᴏᴇsɴ'ᴛ ᴍᴀᴛᴄʜ ᴡɪᴛʜ ᴛᴇʟᴇɢʀᴀᴍ ᴀᴩᴩs sʏsᴛᴇᴍ. \n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=InlineKeyboardMarkup(gen_button))
-        return
+        r = await msg.reply("❌ 𝖨𝗇𝗏𝖺𝗅𝗂𝖽 API_ID 𝗈𝗋 API_HASH.", reply_markup=InlineKeyboardMarkup(gen_button))
+        return await auto_delete(msg, r)
     except (PhoneNumberInvalid, PhoneNumberInvalidError):
-        await msg.reply("» ᴛʜᴇ **ᴩʜᴏɴᴇ_ɴᴜᴍʙᴇʀ** ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ᴅᴏᴇsɴ'ᴛ ʙᴇʟᴏɴɢ ᴛᴏ ᴀɴʏ ᴛᴇʟᴇɢʀᴀᴍ ᴀᴄᴄᴏᴜɴᴛ.\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=InlineKeyboardMarkup(gen_button))
-        return
+        r = await msg.reply("❌ 𝖨𝗇𝗏𝖺𝗅𝗂𝖽 𝖯𝗁𝗈𝗇𝖾 𝖭𝗎𝗆𝖻𝖾𝗋.", reply_markup=InlineKeyboardMarkup(gen_button))
+        return await auto_delete(msg, r)
     try:
         phone_code_msg = None
         if not is_bot:
-            phone_code_msg = await bot.ask(user_id, "» ᴩʟᴇᴀsᴇ sᴇɴᴅ ᴛʜᴇ **ᴏᴛᴩ** ᴛʜᴀᴛ ʏᴏᴜ'ᴠᴇ ʀᴇᴄᴇɪᴠᴇᴅ ғʀᴏᴍ ᴛᴇʟᴇɢʀᴀᴍ ᴏɴ ʏᴏᴜʀ ᴀᴄᴄᴏᴜɴᴛ.\nɪғ ᴏᴛᴩ ɪs `12345`, **ᴩʟᴇᴀsᴇ sᴇɴᴅ ɪᴛ ᴀs** `1 2 3 4 5`.", filters=filters.text, timeout=600)
+            phone_code_msg = await bot.ask(
+                user_id,
+                "🔑 𝖲𝖾𝗇𝖽 OTP (Example: 1 2 3 4 5)",
+                filters=filters.text,
+                timeout=600
+            )
             if await cancelled(phone_code_msg):
                 return
     except TimeoutError:
-        await msg.reply("» ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏғ 10 ᴍɪɴᴜᴛᴇs.\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=InlineKeyboardMarkup(gen_button))
-        return
+        r = await msg.reply("⏰ 𝖳𝗂𝗆𝖾 𝖫𝗂𝗆𝗂𝗍 𝖤𝗑𝗉𝗂𝗋𝖾𝖽.", reply_markup=InlineKeyboardMarkup(gen_button))
+        return await auto_delete(msg, r)
+
     if not is_bot:
         phone_code = phone_code_msg.text.replace(" ", "")
         try:
@@ -112,28 +127,32 @@ async def generate_session(bot: Client, msg: Message, telethon=False, is_bot: bo
             else:
                 await client.sign_in(phone_number, code.phone_code_hash, phone_code)
         except (PhoneCodeInvalid, PhoneCodeInvalidError):
-            await msg.reply("» ᴛʜᴇ ᴏᴛᴩ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs **ᴡʀᴏɴɢ.**\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=InlineKeyboardMarkup(gen_button))
-            return
+            r = await msg.reply("❌ 𝖶𝗋𝗈𝗇𝗀 OTP.", reply_markup=InlineKeyboardMarkup(gen_button))
+            return await auto_delete(msg, r)
+
         except (PhoneCodeExpired, PhoneCodeExpiredError):
-            await msg.reply("» ᴛʜᴇ ᴏᴛᴩ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs **ᴇxᴩɪʀᴇᴅ.**\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=InlineKeyboardMarkup(gen_button))
-            return
+            r = await msg.reply("❌ OTP 𝖤𝗑𝗉𝗂𝗋𝖾𝖽.", reply_markup=InlineKeyboardMarkup(gen_button))
+            return await auto_delete(msg, r)
         except (SessionPasswordNeeded, SessionPasswordNeededError):
             try:
-                two_step_msg = await bot.ask(user_id, "» ᴩʟᴇᴀsᴇ ᴇɴᴛᴇʀ ʏᴏᴜʀ **ᴛᴡᴏ sᴛᴇᴩ ᴠᴇʀɪғɪᴄᴀᴛɪᴏɴ** ᴩᴀssᴡᴏʀᴅ ᴛᴏ ᴄᴏɴᴛɪɴᴜᴇ.", filters=filters.text, timeout=300)
+                two_step_msg = await bot.ask(
+                    user_id,
+                    "🔒 𝖤𝗇𝗍𝖾𝗋 𝖳𝗐𝗈-𝖲𝗍𝖾𝗉 𝖵𝖾𝗋𝗂𝖿𝗂𝖼𝖺𝗍𝗂𝗈𝗇 𝖯𝖺𝗌𝗌𝗐𝗈𝗋𝖽",
+                    filters=filters.text,
+                    timeout=300
+                )
             except TimeoutError:
-                await msg.reply("» ᴛɪᴍᴇ ʟɪᴍɪᴛ ʀᴇᴀᴄʜᴇᴅ ᴏғ 5 ᴍɪɴᴜᴛᴇs.\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", reply_markup=InlineKeyboardMarkup(gen_button))
-                return
+                r = await msg.reply("⏰ 𝖳𝗂𝗆𝖾 𝖫𝗂𝗆𝗂𝗍 𝖤𝗑𝗉𝗂𝗋𝖾𝖽.", reply_markup=InlineKeyboardMarkup(gen_button))
+                return await auto_delete(msg, r)
             try:
                 password = two_step_msg.text
                 if telethon:
                     await client.sign_in(password=password)
                 else:
                     await client.check_password(password=password)
-                if await cancelled(api_id_msg):
-                    return
             except (PasswordHashInvalid, PasswordHashInvalidError):
-                await two_step_msg.reply("» ᴛʜᴇ ᴩᴀssᴡᴏʀᴅ ʏᴏᴜ'ᴠᴇ sᴇɴᴛ ɪs ᴡʀᴏɴɢ.\n\nᴩʟᴇᴀsᴇ sᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ sᴇssɪᴏɴ ᴀɢᴀɪɴ.", quote=True, reply_markup=InlineKeyboardMarkup(gen_button))
-                return
+                r = await two_step_msg.reply("❌ 𝖶𝗋𝗈𝗇𝗀 𝖯𝖺𝗌𝗌𝗐𝗈𝗋𝖽.", quote=True, reply_markup=InlineKeyboardMarkup(gen_button))
+                return await auto_delete(two_step_msg, r)
     else:
         if telethon:
             await client.start(bot_token=phone_number)
@@ -143,7 +162,11 @@ async def generate_session(bot: Client, msg: Message, telethon=False, is_bot: bo
         string_session = client.session.save()
     else:
         string_session = await client.export_session_string()
-    text = f"**𝐓𝐡𝐢𝐬 𝐈𝐬 𝐘𝐨𝐮𝐫 {ty} 𝐒𝐭𝐫𝐢𝐧𝐠 𝐒𝐞𝐬𝐬𝐢𝐨𝐧** \n\n`{string_session}` \n\n**𝐁𝐲 :- @TechifyBots\n⚡ **𝐍𝐎𝐓𝐄 :** 𝐃𝐨𝐧𝐭 𝐒𝐡𝐚𝐫𝐞 𝐖𝐢𝐭𝐡 𝐀𝐧𝐲𝐨𝐧𝐞 𝐁𝐞𝐜𝐚𝐮𝐬𝐞 𝐇𝐞 𝐂𝐚𝐧 𝐇𝐚𝐜𝐤 𝐘𝐨𝐮𝐫 𝐀𝐥𝐥 𝐃𝐚𝐭𝐚.🙂</b>"
+    text = (
+        f"<blockquote><b>{ty} 𝖲𝗍𝗋𝗂𝗇𝗀 𝖲𝖾𝗌𝗌𝗂𝗈𝗇</b></blockquote>\n\n"
+        f"<code>{string_session}</code>\n\n"
+        "⚠️ 𝖣𝗈 𝗇𝗈𝗍 𝗌𝗁𝖺𝗋𝖾 𝗍𝗁𝗂𝗌 𝗌𝗍𝗋𝗂𝗇𝗀 𝗐𝗂𝗍𝗁 𝖺𝗇𝗒𝗈𝗇𝖾."
+    )
     try:
         if not is_bot:
             await client.send_message("me", text)
@@ -152,12 +175,22 @@ async def generate_session(bot: Client, msg: Message, telethon=False, is_bot: bo
     except KeyError:
         pass
     await client.disconnect()
-    await bot.send_message(msg.chat.id, "» 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐆𝐫𝐧𝐞𝐫𝐚𝐭𝐞𝐝 𝐘𝐨𝐮 {} 𝐒𝐭𝐫𝐢𝐧𝐠 𝐒𝐞𝐬𝐬𝐢𝐨𝐧.\n\n𝐏𝐥𝐞𝐚𝐬𝐞 𝐂𝐡𝐞𝐜𝐤 𝐘𝐨𝐮𝐫 𝐒𝐚𝐯𝐞𝐝 𝐌𝐞𝐬𝐬𝐚𝐠𝐞 𝐓𝐨 𝐆𝐞𝐭 𝐈𝐭 ! \n\n𝐀 𝐒𝐭𝐫𝐢𝐧𝐠  𝐆𝐞𝐧𝐞𝐫𝐚𝐭𝐨𝐫 𝐁𝐨𝐭 𝐁𝐲 @TechifySupport ♦".format("ᴛᴇʟᴇᴛʜᴏɴ" if telethon else "ᴩʏʀᴏɢʀᴀᴍ"))
-
+    done = await bot.send_message(
+        msg.chat.id,
+        "✅ 𝖲𝗍𝗋𝗂𝗇𝗀 𝖦𝖾𝗇𝖾𝗋𝖺𝗍𝖾𝖽 𝖲𝗎𝖼𝖼𝖾𝗌𝗌𝖿𝗎𝗅𝗅𝗒.\n\n📩 𝖢𝗁𝖾𝖼𝗄 𝖲𝖺𝗏𝖾𝖽 𝖬𝖾𝗌𝗌𝖺𝗀𝖾𝗌."
+    )
+    await auto_delete(msg, done)
+    ACTIVE_USERS.discard(msg.from_user.id)
 
 async def cancelled(msg):
+    ACTIVE_USERS.discard(msg.from_user.id)
     if "/cancel" in msg.text:
-        await msg.reply("**» ᴄᴀɴᴄᴇʟʟᴇᴅ ᴛʜᴇ ᴏɴɢᴏɪɴɢ sᴛʀɪɴɢ ɢᴇɴᴇʀᴀᴛɪᴏɴ ᴩʀᴏᴄᴇss !**", quote=True, reply_markup=InlineKeyboardMarkup(gen_button))
+        r = await msg.reply("❌ 𝖲𝗍𝗋𝗂𝗇𝗀 𝖦𝖾𝗇𝖾𝗋𝖺𝗍𝗂𝗈𝗇 𝖢𝖺𝗇𝖼𝖾𝗅𝗅𝖾𝖽.", quote=True, reply_markup=InlineKeyboardMarkup(gen_button))
+        await auto_delete(msg, r)
+        return True
+    elif msg.text.startswith("/"):
+        r = await msg.reply("❌ 𝖲𝗍𝗋𝗂𝗇𝗀 𝖦𝖾𝗇𝖾𝗋𝖺𝗍𝗂𝗈𝗇 𝖢𝖺𝗇𝖼𝖾𝗅𝗅𝖾𝖽.", quote=True)
+        await auto_delete(msg, r)
         return True
     else:
         return False
