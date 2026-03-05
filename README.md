@@ -24,24 +24,6 @@
 </details>
 
 
-### 🔥 VARIABLES
-
-<details><summary>Tap On Me For Environment Variable</summary>
-
-- `API_ID` : Get From [Here](https://youtu.be/y5FwAobQ-Kc)
-- `API_HASH` : Get From [Here](https://youtu.be/y5FwAobQ-Kc)
-- `BOT_TOKEN` : Get From [BotFather](https://youtu.be/aJILCCXfNVM)
-- `DB_URI` : Mongodb [Database](https://youtu.be/j8LIuM7vv18)
-- `ADMIN` : Your Telegram ID.
-- `PICS` - Your bot start images (you can add multiple images)
-- `LOG_CHANNEL` : Log Channel ID.
-- `IS_FSUB` : True/False FSUB accordingly.
-- `FSUB_EXPIRE` : Your FSUB link expire time.
-- `AUTH_CHANNELS` : Your Public & Private FSUB channels IDs.
-- `AUTH_REQ_CHANNELS` : Your Private Request FSUB channels IDs.
-
-</details>
-
 ### 😍 COMMANDS
 
 <b><details><summary>Tap On Me For Commands</summary>
@@ -60,6 +42,24 @@ banned - to check banned users.
 </details>
 
 
+### 🔥 VARIABLES
+
+<details><summary>Tap On Me For Environment Variable</summary>
+
+- `API_ID` : Get From [Here](https://youtu.be/y5FwAobQ-Kc)
+- `API_HASH` : Get From [Here](https://youtu.be/y5FwAobQ-Kc)
+- `BOT_TOKEN` : Get From [BotFather](https://youtu.be/rUEKDOSPFho)
+- `DB_URI` : Mongodb [Database](https://youtu.be/j8LIuM7vv18)
+- `ADMIN` : Your Telegram ID.
+- `PICS` - Your bot start images (you can add multiple images)
+- `LOG_CHANNEL` : Log Channel ID.
+- `IS_FSUB` : True/False FSUB accordingly.
+- `FSUB_EXPIRE` : Your FSUB link expire time.
+- `AUTH_CHANNELS` : Your Public & Private FSUB channels IDs.
+- `AUTH_REQ_CHANNELS` : Your Private Request FSUB channels IDs.
+</details>
+
+
 ### 💞 CREDIT
 
 - [TechifyBots](https://github.com/TechifyBots)
@@ -67,6 +67,8 @@ banned - to check banned users.
 ### 😇 [SUPPORT](https://techifybots.github.io/PayWeb)
 
 ### 🥳 [DEVELOPER](https://instagram.com/ImRahulDhankhar)
+
+### 🚀 [DEPLOYMENT GUIDE](https://www.youtube.com/playlist?list=PLQrMSile4s5UnIEvWyKM1MKFuNg8Wfh2S)
 
 ### 📌 NOTE
 
