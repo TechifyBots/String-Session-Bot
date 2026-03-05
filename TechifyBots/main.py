@@ -1,3 +1,4 @@
+import asyncio
 from telethon import TelegramClient
 from pyrogram import Client, filters
 from asyncio.exceptions import TimeoutError
@@ -19,6 +20,23 @@ from telethon.errors import (
     SessionPasswordNeededError,
     PasswordHashInvalidError
 )
+
+async def auto_delete(user_msg=None, bot_msg=None, delay=300):
+    await asyncio.sleep(delay)
+    if user_msg:
+        try:
+            await user_msg.delete()
+        except:
+            pass
+    if not bot_msg:
+        return
+    if not isinstance(bot_msg,(list,tuple)):
+        bot_msg=[bot_msg]
+    for m in bot_msg:
+        try:
+            await m.delete()
+        except:
+            pass
 
 ACTIVE_USERS = set()
 
