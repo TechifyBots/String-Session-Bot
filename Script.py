@@ -30,4 +30,4 @@ class text(object):
 
 ᴊᴜsᴛ ɢᴏ ʙᴀᴄᴋ ᴀɴᴅ ᴄʟɪᴄᴋ ᴏɴ ɢᴇɴᴇʀᴀᴛᴇ sᴛʀɪɴɢ sᴇssɪᴏɴ ʙᴜᴛᴛᴏɴ ᴀɴᴅ ᴛʜᴇɴ ꜰᴏʟʟᴏᴡ ᴛʜᴇ sᴛᴇᴘs
 
-<blockquote>ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/TechifyBots'>ʀᴀʜᴜʟ</a></blockquote></b>"""
+<blockquote>‣ ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/TechifyBots'>ʀᴀʜᴜʟ</a></blockquote></b>"""
