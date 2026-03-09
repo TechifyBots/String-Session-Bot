@@ -9,7 +9,7 @@ telethon
 pytz
 
 # For Web Deployable
-Flask
+flask
 gunicorn
 Jinja2
 werkzeug
