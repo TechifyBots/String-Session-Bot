@@ -3,11 +3,11 @@ import random
 import asyncio
 from collections import defaultdict
 from pyrogram import Client, filters, enums
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from pyrogram.errors import *
-from config import *
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkupt
+from config import LOG_CHANNEL, PICS, ADMIN
 from Script import text
 from .database import tb
+from pyrogram.errors import FloodWait, UserIsBlocked, PeerIdInvalid, InputUserDeactivated
 
 @Client.on_message(filters.command("start") & filters.private)
 async def start_cmd(client, message):
