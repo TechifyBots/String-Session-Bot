@@ -3,7 +3,7 @@ import random
 import asyncio
 from collections import defaultdict
 from pyrogram import Client, filters, enums
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkupt
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from config import LOG_CHANNEL, PICS, ADMIN
 from Script import text
 from .database import tb
