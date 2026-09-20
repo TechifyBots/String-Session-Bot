@@ -13,7 +13,7 @@ A powerful, <b>open-source,</b> and developer-friendly Telegram bot built to gen
 
 [![Last Commit](https://img.shields.io/github/last-commit/TechifyBots/String-Session-Bot?style=for-the-badge)](https://github.com/TechifyBots/String-Session-Bot/commits)
 <br>
-[![GitHub Stars](https://img.shields.io/github/stars/TechifyBots/String-Session-Bot?style=for-the-badge)](https://github.com/TechifyBots/String-Session-Bot/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/TechifyBots/String-Session-Bot?style=for-the-badge)](https://github.com/TechifyBots)
 [![GitHub Forks](https://img.shields.io/github/forks/TechifyBots/String-Session-Bot?style=for-the-badge)](https://github.com/TechifyBots/String-Session-Bot/fork)
 <br>
 [![Repo Size](https://img.shields.io/github/languages/code-size/TechifyBots/String-Session-Bot?style=for-the-badge&color=8B5CF6)](https://github.com/TechifyBots/String-Session-Bot)
