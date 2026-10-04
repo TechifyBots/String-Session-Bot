@@ -1,11 +1,11 @@
 class text(object):
   START = """<b>{},
 
-ɪ ᴄᴀɴ ɢᴇɴᴇʀᴀᴛᴇ ᴘʏʀᴏɢʀᴀᴍ ᴀɴᴅ ᴛᴇʟᴇᴛʜᴏɴ ᴜꜱᴇʀ & ʙᴏᴛ ꜱᴛʀɪɴɢ ꜱᴇꜱꜱɪᴏɴꜱ.
+𝖨 𝖼𝖺𝗇 𝗀𝖾𝗇𝖾𝗋𝖺𝗍𝖾 𝗉𝗒𝗋𝗈𝗀𝗋𝖺𝗆 𝖺𝗇𝖽 𝗍𝖾𝗅𝖾𝗍𝗁𝗈𝗇 𝗎𝗌𝖾𝗋 & 𝖻𝗈𝗍 𝗌𝗍𝗋𝗂𝗇𝗀 𝗌𝖾𝗌𝗌𝗂𝗈𝗇𝗌.
 
-ᴜꜱᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴꜱ ʙᴇʟᴏᴡ ᴛᴏ ꜱᴛᴀʀᴛ ɢᴇɴᴇʀᴀᴛɪɴɢ ʏᴏᴜʀ ꜱᴇꜱꜱɪᴏɴ.
+𝖴𝗌𝖾 𝗍𝗁𝖾 𝖻𝗎𝗍𝗍𝗈𝗇𝗌 𝖻𝖾𝗅𝗈𝗐 𝗍𝗈 𝗌𝗍𝖺𝗋𝗍 𝗀𝖾𝗇𝖾𝗋𝖺𝗍𝗂𝗇𝗀 𝗒𝗈𝗎𝗋 𝗌𝖾𝗌𝗌𝗂𝗈𝗇.
 
-<blockquote>‣ ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://techifybots.vercel.app'>ʀᴀʜᴜʟ</a></blockquote></b>"""
+<blockquote>‣ 𝖬𝖺𝗂𝗇𝗍𝖺𝗂𝗇𝖾𝖽 𝖻𝗒: <a href='https://techifybots.vercel.app'>𝖱𝖺𝗁𝗎𝗅</a></blockquote></b>"""
 
   LOG = """👁️‍🗨️ 𝘜𝘚𝘌𝘙 𝘋𝘌𝘛𝘈𝘐𝘓𝘚
 
@@ -16,22 +16,30 @@ class text(object):
 
 𝘉𝘺 = @{}"""
   
-  ABOUT = """<b>‣ ᴍʏ ɴᴀᴍᴇ : <a href='https://youtube.com/@techifybots'>sᴛʀɪɴɢ sᴇssɪᴏɴ ʙᴏᴛ</a>
-‣ ʟɪʙʀᴀʀʏ : <a href='https://docs.pyrogram.org/'>ᴘʏʀᴏɢʀᴀᴍ</a> 
-‣ ᴅᴀᴛᴀʙᴀsᴇ : <a href='https://www.mongodb.com/'>ᴍᴏɴɢᴏᴅʙ</a>
-‣ ʟᴀɴɢᴜᴀɢᴇ : <a href='https://www.python.org/download/releases/3.0/'>ᴘʏᴛʜᴏɴ 𝟹</a> 
-‣ ʙᴏᴛ sᴇʀᴠᴇʀ : <a href='https://www.koyeb.com/'>ᴋᴏʏᴇʙ</a>
-‣ ᴄʀᴇᴀᴛᴇᴅ ʙʏ : <a href='https://telegram.me/callownerbot'>ʀᴀʜᴜʟ</a></b>"""
+  ABOUT = """<b>‣ 𝖬𝗒 𝖭𝖺𝗆𝖾 :</b> <a href='https://youtube.com/@techifybots'>𝖳𝖾𝖼𝗁𝗂𝖿𝗒 𝖡𝗈𝗍𝗌</a>
+<b>‣ 𝖫𝗂𝖻𝗋𝖺𝗋𝗒 :</b> <a href='https://docs.pyrogram.org/'>𝖯𝗒𝗋𝗈𝗀𝗋𝖺𝗆</a>
+<b>‣ 𝖣𝖺𝗍𝖺𝖻𝖺𝗌𝖾 :</b> <a href='https://www.mongodb.com/'>𝖬𝗈𝗇𝗀𝗈𝖣𝖡</a>
+<b>‣ 𝖫𝖺𝗇𝗀𝗎𝖺𝗀𝖾 :</b> <a href='https://www.python.org/download/releases/3.0/'>𝖯𝗒𝗍𝗁𝗈𝗇 𝟥</a>
+<b>‣ 𝖡𝗈𝗍 𝖲𝖾𝗋𝗏𝖾𝗋 :</b> <a href='https://www.koyeb.com/'>𝖪𝗈𝗒𝖾𝖻</a>
+<b>‣ 𝖢𝗋𝖾𝖺𝗍𝖾𝖽 𝖡𝗒 :</b> <a href='https://telegram.me/callownerbot'>𝖱𝖺𝗁𝗎𝗅</a>"""
+
+    GUIDE = """❓ 𝗛𝗮𝘃𝗶𝗻𝗴 𝗧𝗿𝗼𝘂𝗯𝗹𝗲?
+
+𝖨𝖿 𝗒𝗈𝗎'𝗋𝖾 𝖿𝖺𝖼𝗂𝗇𝗀 𝖺𝗇𝗒 𝗉𝗋𝗈𝖻𝗅𝖾𝗆 𝗐𝗁𝗂𝗅𝖾 𝗎𝗌𝗂𝗇𝗀 𝗍𝗁𝖾 𝖻𝗈𝗍 𝗈𝗋 𝗂𝗍𝗌 𝖼𝗈𝗆𝗆𝖺𝗇𝖽𝗌, 𝗉𝗅𝖾𝖺𝗌𝖾 𝗐𝖺𝗍𝖼𝗁 𝗍𝗁𝖾 𝗍𝗎𝗍𝗈𝗋𝗂𝖺𝗅 𝗏𝗂𝖽𝖾𝗈 𝖻𝖾𝗅𝗈𝗐.
+
+🎥 𝖳𝗁𝖾 𝗏𝗂𝖽𝖾𝗈 𝗐𝗂𝗅𝗅 𝖼𝗅𝖾𝖺𝗋𝗅𝗒 𝖾𝗑𝗉𝗅𝖺𝗂𝗇 𝗁𝗈𝗐 𝗍𝗈 𝗎𝗌𝖾 𝖾𝖺𝖼𝗁 𝖿𝖾𝖺𝗍𝗎𝗋𝖾 𝗐𝗂𝗍𝗁 𝖾𝖺𝗌𝖾.
+
+<blockquote><i>💖 𝖥𝗈𝗋 𝗆𝗈𝗋𝖾 𝗎𝗉𝖽𝖺𝗍𝖾𝗌 — <b><a href='https://techifybots.vercel.app/pay'>𝖲𝗎𝗉𝗉𝗈𝗋𝗍 𝖴𝗌</a></b></i></blockquote>"""
 
   
   HELP = """<b>{},
 
-ᴛʜɪꜱ ɪꜱ ʀᴇᴀʟʟʏ ꜱɪᴍᴘʟᴇ 😄
+𝖳𝗁𝗂𝗌 𝗂𝗌 𝗋𝖾𝖺𝗅𝗅𝗒 𝗌𝗂𝗆𝗉𝗅𝖾 😄
 
-ᴊᴜꜱᴛ ɢᴏ ʙᴀᴄᴋ ᴀɴᴅ ᴄʟɪᴄᴋ ᴏɴ <i>ɢᴇɴᴇʀᴀᴛᴇ ꜱᴛʀɪɴɢ ꜱᴇꜱꜱɪᴏɴ</i> ʙᴜᴛᴛᴏɴ ᴏʀ ᴜꜱᴇ /gen ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ꜱᴛᴀʀᴛ.
+𝖩𝗎𝗌𝗍 𝗀𝗈 𝖻𝖺𝖼𝗄 𝖺𝗇𝖽 𝖼𝗅𝗂𝖼𝗄 𝗈𝗇 <i>𝖦𝖾𝗇𝖾𝗋𝖺𝗍𝖾 𝖲𝗍𝗋𝗂𝗇𝗀 𝖲𝖾𝗌𝗌𝗂𝗈𝗇</i> 𝖻𝗎𝗍𝗍𝗈𝗇 𝗈𝗋 𝗎𝗌𝖾 /𝗀𝖾𝗇 𝖼𝗈𝗆𝗆𝖺𝗇𝖽 𝗍𝗈 𝗌𝗍𝖺𝗋𝗍.
 
-ᴛʜᴇɴ ꜱᴇʟᴇᴄᴛ ʏᴏᴜʀ ꜱᴇꜱꜱɪᴏɴ ᴛʏᴘᴇ ᴀɴᴅ ꜰᴏʟʟᴏᴡ ᴛʜᴇ ꜱᴛᴇᴘꜱ.
+𝖳𝗁𝖾𝗇 𝗌𝖾𝗅𝖾𝖼𝗍 𝗒𝗈𝗎𝗋 𝗌𝖾𝗌𝗌𝗂𝗈𝗇 𝗍𝗒𝗉𝖾 𝖺𝗇𝖽 𝖿𝗈𝗅𝗅𝗈𝗐 𝗍𝗁𝖾 𝗌𝗍𝖾𝗉𝗌.
 
-⚠️ ɪꜰ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ꜱᴛᴏᴘ ᴛʜᴇ ᴘʀᴏᴄᴇꜱꜱ, ꜱᴇɴᴅ /cancel.
+⚠️ 𝖨𝖿 𝗒𝗈𝗎 𝗐𝖺𝗇𝗍 𝗍𝗈 𝗌𝗍𝗈𝗉 𝗍𝗁𝖾 𝗉𝗋𝗈𝖼𝖾𝗌𝗌, 𝗌𝖾𝗇𝖽 /𝖼𝖺𝗇𝖼𝖾𝗅.
 
-<blockquote>‣ ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ : <a href='https://telegram.me/TechifyBots'>ʀᴀʜᴜʟ</a></blockquote></b>"""
+<blockquote>‣ 𝖬𝖺𝗂𝗇𝗍𝖺𝗂𝗇𝖾𝖽 𝖻𝗒: <a href='https://telegram.me/TechifyBots'>𝖱𝖺𝗁𝗎𝗅</a></blockquote></b>"""
