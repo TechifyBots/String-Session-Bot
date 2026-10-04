@@ -34,6 +34,18 @@ async def start_cmd(client, message):
         ])
     )
 
+@Client.on_message(filters.command("help") & filters.private)
+async def help_cmd(client, message):
+    msg = await message.reply(text.GUIDE,
+        reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("🎬 𝖶𝖺𝗍𝖼𝗁 𝖳𝗎𝗍𝗈𝗋𝗂𝖺𝗅", url="https://youtu.be/mbrXwwbkIrI", style=enums.ButtonStyle.PRIMARY)]])
+    )
+    await asyncio.sleep(300)
+    await msg.delete()
+    try:
+        await message.delete()
+    except:
+        pass
+
 def parse_button_markup(text: str):
     lines = text.split("\n")
     buttons = []
