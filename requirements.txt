@@ -4,4 +4,5 @@ motor
 aiohttp
 telethon
 pytz
+requests
 git+https://github.com/TechifyBots/Kurikit.git
