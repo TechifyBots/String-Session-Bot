@@ -121,10 +121,10 @@ Watch this short video to understand **what the bot is**, **why it's useful**, *
 ## 🤖 Commands
 
 ```
-start - Check Bot Alive.
+start - Start the bot.
+help - Get the bot usage guide.
 stats - Check bot stats.
 gen - To start generation string session.
-help - Bot usage guide.
 cancel - To cancel the string generation process.
 ban - to ban a user.
 unban - to unban a user.
