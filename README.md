@@ -71,6 +71,8 @@ A powerful, <b>open-source,</b> and developer-friendly Telegram bot built to gen
 - 📢 **Broadcast System** — Send messages to all registered bot users.
 - 🛠️ **Maintenance Mode** — Temporarily disable bot services when required.
 - 🚫 **Ban & Unban** — Manage restricted users easily.
+- 📊 **Bot Statistics** — Monitor bot usage and user activity
+- 💾 **Database Integration** — Store bot data securely with MongoDB
 - 🚀 **Multi-Platform Deployment** — Deploy on **Koyeb, Heroku, Railway & more**.
 - 💬 **24/7 Developer Support** — Get help whenever you need it.
 
